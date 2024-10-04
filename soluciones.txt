@@ -1,0 +1,68 @@
+#######################################################################################################################################
+# Teoría
+
+1. b
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+2. a
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+3. 1NF: Primera Forma Normal
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+4. El WHERE se usa para filtrar registros de acuerdo a ciertas condiciones y va antes del GROUP BY.
+Por otro lado el HAVING es usado para filtrar grupos después de agruparlos bajo la cláusula de GROUP BY.
+#--------------------------------------------------------------------------------------------------------------------------------------
+
+5.c
+#######################################################################################################################################
+# Práctica
+
+1.
+
+```SQL
+-- poner solución debajo de este mensaje
+SELECT 
+				nombre_materia,
+				ROUND(AVG(calificacion),2) AS promedio
+FROM calificaciones
+WHERE calificacion IS NOT NULL
+GROUP BY nombre_materia
+ORDER BY promedio DESC;
+
+```
+
+2.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT 
+				DISTINCT a.nombre,
+				a.apellido
+FROM alumnos AS a
+INNER JOIN calificaciones AS c
+USING(expediente)
+WHERE c.calificacion IS NOT NULL
+ORDER BY a.apellido ASC;
+
+```
+
+3.
+
+```SQL
+-- poner solución debajo de este mensaje
+
+SELECT
+				a.expediente,
+				a.nombre,
+				a.apellido,
+				MAX(c.calificacion) AS mayor_calificacion
+FROM alumnos AS a
+INNER JOIN calificaciones AS c
+USING(expediente)
+WHERE c.calificacion IS NOT NULL
+GROUP BY a.expediente;
+
+
+```
